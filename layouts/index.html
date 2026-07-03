@@ -17,10 +17,10 @@
                 <div class="col-span-6">
                     <div class="mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg hero-container">
                         {{/* Use Hugo's image processing for optimized responsive images */}}
-                        {{ $heroImage := resources.Get "images/pages/tailbliss-rocket-indigo.png" }}
+                        {{ $heroImage := resources.Get "images/pages/dcc.jpg" }}
                         {{ if $heroImage }}
-                            {{ $heroWebP := $heroImage.Resize "576x576 webp q85" }}
-                            {{ $heroWebPSmall := $heroImage.Resize "320x320 webp q85" }}
+                            {{ $heroWebP := $heroImage.Resize "576x" }}
+                            {{ $heroWebPSmall := $heroImage.Resize "320x" }}
                             <img 
                                 src="{{ $heroWebP.RelPermalink }}" 
                                 srcset="{{ $heroWebPSmall.RelPermalink }} 320w, {{ $heroWebP.RelPermalink }} 576w"
@@ -34,7 +34,7 @@
                         {{ else }}
                             {{/* Fallback to static image */}}
                             <img 
-                                src="/images/tailbliss-rocket-indigo.webp" 
+                                src="/images/dcc.jpg" 
                                 alt="TailBliss Hero" 
                                 class="overflow-hidden mx-auto rounded-2xl shadow-xl hero-image"
                                 width="576" 
@@ -52,6 +52,22 @@
     <!-- Our mission section -->
     <div class="relative my-4">
         <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
+            <div class="relative px-4 mx-auto max-w-md sm:max-w-3xl sm:px-6 lg:px-0">
+                <div class="md:pt-12 sm:pt-6 lg:pt-20">
+                    <h1 class="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-50 sm:text-6xl">
+                        {{ .Site.Params.P1.Heading }}
+                    </h1>
+                    <div class="mt-8 text-gray-900 dark:text-white">
+                        <div class="mt-6 space-y-6 text-gray-900 dark:text-white">
+                            {{ range .Site.Params.P1.Content }}
+                            <p class="text-lg text-gray-900 dark:text-white">
+                                {{ .text }}
+                            </p>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="relative sm:py-8 lg:py-0">
                 <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
                     <div class="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl dark:bg-gray-900/10 lg:right-72"></div><svg class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12" width="404" height="392" fill="none" viewBox="0 0 404 392" loading="lazy">
@@ -71,23 +87,6 @@
                         <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" class="w-full h-auto" alt="P1" loading="lazy" />
                         {{ end }}
                         {{ end }}
-                    </div>
-                </div>
-            </div>
-            <div class="relative px-4 mx-auto max-w-md sm:max-w-3xl sm:px-6 lg:px-0">
-                <div class="md:pt-12 sm:pt-6 lg:pt-20">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 sm:text-4xl">
-                        {{ .Site.Params.P1.Heading }}
-                    </h2>
-                    <div class="mt-6 text-gray-900 dark:text-white">
-                        <div class="mt-6 space-y-6 text-gray-900 dark:text-white">
-                            {{ range .Site.Params.P1.Content }}
-                            <p class="text-lg text-gray-900 dark:text-white">
-                                {{ .text }}
-                            </p>
-                            {{ end }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -131,7 +130,6 @@
                     {{ end }}
                     {{ end }}
 
-                </div>
             </div>
         </div>
     </div>
@@ -205,9 +203,6 @@
             </div>
         </div>
     </div>
-
-    {{/* Newsletter signup section */}}
-    {{ partial "newsletter.html" . }}
 
 </main>
 {{ end }}

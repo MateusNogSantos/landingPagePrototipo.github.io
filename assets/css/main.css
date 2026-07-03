@@ -29,8 +29,6 @@ img[loading="lazy"] {
   /* Reserve space immediately to prevent layout shifts */
   width: 100%;
   max-width: 576px;
-  /* Fixed aspect ratio to prevent any shifts */
-  aspect-ratio: 1 / 1;
   /* Ensure proper containment */
   contain: layout style;
   /* Prevent any overflow issues */
@@ -42,12 +40,10 @@ img[loading="lazy"] {
   width: 100%;
   height: auto;
   max-width: 576px;
-  /* Fixed aspect ratio */
-  aspect-ratio: 1 / 1;
   /* Prevent any layout shifts during loading */
   contain: layout style paint;
-  /* Ensure image fits within container */
-  object-fit: cover;
+  /* Ensure image fits within container without distortion */
+  object-fit: contain;
   /* Prevent any size changes */
   flex-shrink: 0;
 }
